@@ -1,8 +1,12 @@
+.excel
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+!**/src/resources/appllication-dev.properties
+!**/src/resources/appllication-second.properties
 
 ### STS ###
 .apt_generated
