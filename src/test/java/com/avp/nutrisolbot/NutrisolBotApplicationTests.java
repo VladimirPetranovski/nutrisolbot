@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = {NutrisolBot.class, Mapper.class, MessageService.class})
-public class NutrisolbotApplicationTests {
+public class NutrisolBotApplicationTests {
 
 	@Test
 	void contextLoads() {

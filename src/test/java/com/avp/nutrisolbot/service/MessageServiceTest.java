@@ -1,6 +1,6 @@
 package com.avp.nutrisolbot.service;
 
-import com.avp.nutrisolbot.NutrisolbotApplicationTests;
+import com.avp.nutrisolbot.NutrisolBotApplicationTests;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MessageServiceTest extends NutrisolbotApplicationTests {
+class MessageServiceTest extends NutrisolBotApplicationTests {
 
     @Autowired
     NutrisolBot nutrisolBot;
