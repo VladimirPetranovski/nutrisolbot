@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-//@Service
+@Service
 public class SendBotMessageServiceImp implements SendBotMessageService{
 
     private static final Logger log = LoggerFactory.getLogger(SendBotMessageServiceImp.class);
