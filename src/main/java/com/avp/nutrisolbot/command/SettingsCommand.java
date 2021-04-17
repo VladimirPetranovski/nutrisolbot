@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class SettingsCommand implements Command{
 
-    private final static String SETTINGS_MESSAGE = "Here will be able anything)";
+    public final static String SETTINGS_MESSAGE = "Here will be able anything)";
 
     private final SendBotMessageService sendBotMessageService;
 
