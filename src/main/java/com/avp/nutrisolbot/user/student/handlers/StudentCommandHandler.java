@@ -1,5 +1,6 @@
 package com.avp.nutrisolbot.user.student.handlers;
 
+import com.avp.nutrisolbot.model.Student;
 import com.avp.nutrisolbot.model.User;
 import com.avp.nutrisolbot.service.UserService;
 import com.avp.nutrisolbot.user.student.states.StudentBotContext;
@@ -34,5 +35,6 @@ public class StudentCommandHandler {
         StudentBotState botState = null;
 
         User user = userService.findByChatId(chatId);
+        Student student = user.getStudent();
     }
 }
