@@ -3,6 +3,7 @@ package com.avp.nutrisolbot.user.student.handlers;
 import com.avp.nutrisolbot.model.Student;
 import com.avp.nutrisolbot.model.User;
 import com.avp.nutrisolbot.service.UserService;
+import com.avp.nutrisolbot.user.student.service.StudentService;
 import com.avp.nutrisolbot.user.student.states.StudentBotContext;
 import com.avp.nutrisolbot.user.student.states.StudentBotState;
 import org.slf4j.Logger;
@@ -15,6 +16,9 @@ public class StudentCommandHandler {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    StudentService studentService;
 
     private static final Logger log = LoggerFactory.getLogger(StudentCommandHandler.class);
 
@@ -36,5 +40,9 @@ public class StudentCommandHandler {
 
         User user = userService.findByChatId(chatId);
         Student student = user.getStudent();
+
+        if (student == null) {
+            student = studentService.createStudent(user);
+        }
     }
 }
