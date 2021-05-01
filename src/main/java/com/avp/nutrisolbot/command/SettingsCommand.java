@@ -15,6 +15,6 @@ public class SettingsCommand implements Command{
 
     @Override
     public void execute(Update update) {
-        sendMessageService.sendMessage(update.getMessage().getChatId(), SETTINGS_MESSAGE);
+        sendMessageService.sendMessage(update.getMessage().getChatId().toString(), SETTINGS_MESSAGE);
     }
 }

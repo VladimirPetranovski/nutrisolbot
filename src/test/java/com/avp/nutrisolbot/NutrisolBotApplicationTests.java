@@ -1,12 +1,10 @@
 package com.avp.nutrisolbot;
 
-import com.avp.nutrisolbot.config.Mapper;
-import com.avp.nutrisolbot.service.MessageService;
 import com.avp.nutrisolbot.bot.NutrisolBot;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = {NutrisolBot.class, Mapper.class, MessageService.class})
+@SpringBootTest(classes = {NutrisolBot.class})
 public class NutrisolBotApplicationTests {
 
 	@Test

@@ -21,7 +21,7 @@ public class SendMessageServiceImp implements SendMessageService{
     }
 
     @Override
-    public void sendMessage(Long chatId, String message) {
+    public void sendMessage(String chatId, String message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText(message);
         sendMessage.setChatId(chatId);
