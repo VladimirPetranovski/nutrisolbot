@@ -3,14 +3,12 @@ package com.avp.nutrisolbot.bot;
 import com.avp.nutrisolbot.command.CommandContainer;
 import com.avp.nutrisolbot.command.NoCommand;
 import com.avp.nutrisolbot.service.SendMessageServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
-import java.util.Locale;
 
 import static com.avp.nutrisolbot.command.CommandName.NOCOMMAND;
 
@@ -28,10 +26,11 @@ public class NutrisolBot extends TelegramLongPollingBot {
 //    @Autowired
 //    MessageService messageService;
 
-    private static String COMMAND_PREFIX = "/";
+//    private static String COMMAND_PREFIX = "/";
 
     private final CommandContainer commandContainer;
 
+    @Autowired
     public NutrisolBot() {
         commandContainer = new CommandContainer(new SendMessageServiceImp(this));
     }
@@ -40,7 +39,7 @@ public class NutrisolBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText().trim();
-            if (message.startsWith(COMMAND_PREFIX)) {
+            if (message.startsWith("/")) {
                 String identifier = message.split(" ")[0].toLowerCase();
                 commandContainer.retrieveCommand(identifier).execute(update);
             }else {
@@ -78,6 +77,4 @@ public class NutrisolBot extends TelegramLongPollingBot {
 //            e.printStackTrace();
 //        }
 //    }
-
-
 }

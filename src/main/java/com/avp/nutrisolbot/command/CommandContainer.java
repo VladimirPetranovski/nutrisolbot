@@ -15,6 +15,7 @@ public class CommandContainer {
                 .put(START.getCommandName(), new StartCommand(sendMessageService))
                 .put(HELP.getCommandName(), new HelpCommand(sendMessageService))
                 .put(STOP.getCommandName(), new StopCommand(sendMessageService))
+                .put(SETTINGS.getCommandName(), new SettingsCommand(sendMessageService))
                 .put(NOCOMMAND.getCommandName(), new NoCommand(sendMessageService))
                 .build();
         unknownCommand = new UnknownCommand(sendMessageService);
