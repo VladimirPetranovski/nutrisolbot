@@ -1,7 +1,6 @@
 package com.avp.nutrisolbot.bot;
 
 import com.avp.nutrisolbot.command.CommandContainer;
-import com.avp.nutrisolbot.command.NoCommand;
 import com.avp.nutrisolbot.service.SendMessageServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,13 +19,6 @@ public class NutrisolBot extends TelegramLongPollingBot {
     private String botUsername;
     @Value("${bot.token}")
     private String botToken;
-
-//    @Autowired
-//    ObjectMapper objectMapper;
-//    @Autowired
-//    MessageService messageService;
-
-//    private static String COMMAND_PREFIX = "/";
 
     private final CommandContainer commandContainer;
 
@@ -59,22 +51,4 @@ public class NutrisolBot extends TelegramLongPollingBot {
         return botToken;
     }
 
-//    @Override
-//    public void onUpdateReceived(Update update) {
-////        saveJson(update); // оставлю для тестов
-////        SendMessage sendMessage = messageService.onUpdateReceived(update);
-////        try {
-////            execute(sendMessage);
-////        } catch (TelegramApiException e) {
-////            e.printStackTrace();
-////        }
-//    }
-
-    //    private void saveJson(Update update) {
-//        try {
-//            objectMapper.writeValue(new File("src/test/resources/update.json"), update);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
