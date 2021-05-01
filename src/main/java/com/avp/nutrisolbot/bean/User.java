@@ -22,7 +22,7 @@ public class User {
     private Integer id;
 //
 //    @Column(name = "ChatId", nullable = false)
-    private Long chatId;
+    private String chatId;
 
 //    @Column(name = "Firstname")
     private String firstname;
