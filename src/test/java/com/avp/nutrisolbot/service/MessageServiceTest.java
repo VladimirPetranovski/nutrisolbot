@@ -1,6 +1,7 @@
 package com.avp.nutrisolbot.service;
 
 import com.avp.nutrisolbot.NutrisolBotApplicationTests;
+import com.avp.nutrisolbot.bot.NutrisolBot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

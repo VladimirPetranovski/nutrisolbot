@@ -2,7 +2,7 @@ package com.avp.nutrisolbot;
 
 import com.avp.nutrisolbot.config.Mapper;
 import com.avp.nutrisolbot.service.MessageService;
-import com.avp.nutrisolbot.service.NutrisolBot;
+import com.avp.nutrisolbot.bot.NutrisolBot;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
