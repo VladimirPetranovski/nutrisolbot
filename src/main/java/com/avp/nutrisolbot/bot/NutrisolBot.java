@@ -1,17 +1,15 @@
-package com.avp.nutrisolbot.service;
+package com.avp.nutrisolbot.bot;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.avp.nutrisolbot.command.CommandContainer;
+import com.avp.nutrisolbot.service.SendMessageServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.File;
-import java.io.IOException;
+import static com.avp.nutrisolbot.command.CommandName.NOCOMMAND;
 
 @Component
 @PropertySource("application.properties")
@@ -22,27 +20,24 @@ public class NutrisolBot extends TelegramLongPollingBot {
     @Value("${bot.token}")
     private String botToken;
 
+    private final CommandContainer commandContainer;
+
     @Autowired
-    ObjectMapper objectMapper;
-    @Autowired
-    MessageService messageService;
+    public NutrisolBot() {
+        commandContainer = new CommandContainer(new SendMessageServiceImp(this));
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
-//        saveJson(update); // оставлю для тестов
-        SendMessage sendMessage = messageService.onUpdateReceived(update);
-        try {
-            execute(sendMessage);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            String message = update.getMessage().getText().trim();
+            if (message.startsWith("/")) {
+                String identifier = message.split(" ")[0].toLowerCase();
+                commandContainer.retrieveCommand(identifier).execute(update);
+            }else {
+                commandContainer.retrieveCommand(NOCOMMAND.getCommandName()).execute(update);
+            }
 
-    private void saveJson(Update update) {
-        try {
-            objectMapper.writeValue(new File("src/test/resources/update.json"), update);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -55,4 +50,5 @@ public class NutrisolBot extends TelegramLongPollingBot {
     public String getBotToken() {
         return botToken;
     }
+
 }
