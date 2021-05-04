@@ -2,8 +2,6 @@ package com.avp.nutrisolbot.bean;
 
 import lombok.*;
 
-import javax.persistence.*;
-
 @Data
 //@Entity
 @Builder
