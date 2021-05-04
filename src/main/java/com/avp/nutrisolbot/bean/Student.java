@@ -1,6 +1,9 @@
 package com.avp.nutrisolbot.bean;
 
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 
 @Data
 //@Entity
