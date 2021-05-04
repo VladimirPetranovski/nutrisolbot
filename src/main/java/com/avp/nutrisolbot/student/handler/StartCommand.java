@@ -1,9 +1,14 @@
 package com.avp.nutrisolbot.student.handler;
 
 import com.avp.nutrisolbot.service.SendMessageService;
+import com.avp.nutrisolbot.student.buttons.inline.StudentInlineKeyboardSource;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 public class StartCommand implements Command {
+
+    private final StudentInlineKeyboardSource studentInlineKeyboardSource = new StudentInlineKeyboardSource();
 
     private final SendMessageService sendMessageService;
 
@@ -17,7 +22,11 @@ public class StartCommand implements Command {
             "Обычный рекомендуемый объем потребления чистой воды в день для здорового человека - 2 литра. " +
             "В зависимости от заболеваний, возраста и образа жизни человека рекомендации меняются. " +
             "Необходимо проконсультироваться с вашим лечащим врачом. Подробнее можно узнать по ссылке " +
-            "https://ru.wikipedia.org/wiki/%D0%93%D0%B8%D0%B4%D1%80%D0%BE%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81.";
+            "https://ru.wikipedia.org/wiki/%D0%93%D0%B8%D0%B4%D1%80%D0%BE%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81. " +
+            "Если ты решил заняться своим здоровьем, тебе понравиться наш бот. Жми на кнопку ниже --- будем " +
+            "знакомиться!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+
+    private final ReplyKeyboard SHARE_CONTACT = studentInlineKeyboardSource.getStartAndShareContact();
 
     public StartCommand(SendMessageService sendMessageService) {
         this.sendMessageService = sendMessageService;
@@ -25,6 +34,6 @@ public class StartCommand implements Command {
 
     @Override
     public void execute(Update update) {
-        sendMessageService.sendMessage(update.getMessage().getChatId().toString(), START_MESSAGE);
+        sendMessageService.sendMessage(update.getMessage().getChatId().toString(), START_MESSAGE, SHARE_CONTACT);
     }
 }

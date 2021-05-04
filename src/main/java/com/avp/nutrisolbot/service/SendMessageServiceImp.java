@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
@@ -31,6 +32,21 @@ public class SendMessageServiceImp implements SendMessageService{
             nutrisolBot.execute(sendMessage);
         } catch (TelegramApiException e){
             log.info("The message didn't send");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sendMessage(String chatId, String message, ReplyKeyboard replyKeyboard) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(message);
+        sendMessage.enableHtml(true);
+        sendMessage.setReplyMarkup(replyKeyboard);
+
+        try {
+            nutrisolBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
             e.printStackTrace();
         }
     }
