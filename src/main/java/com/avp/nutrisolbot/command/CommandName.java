@@ -6,7 +6,6 @@ public enum CommandName {
     STOP("/stop"),
     SETTINGS("/settings"),
     HELP("/help"),
-//    UNKNOWN("/sfs"),
     NOCOMMAND("vglhi");
 
     private final String commandName;
