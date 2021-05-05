@@ -9,7 +9,7 @@ public class SharedContact implements Command{
 
     private final StudentInlineKeyboardSource studentInlineKeyboardSource = new StudentInlineKeyboardSource();
     private final SendMessageService sendMessageService;
-    private static final String ADDED_CONTACT = "Я очень рад, что ты решил с нами заниматься, я уверяю тебя ты не пожалеешь об этом \\ud83d\\ude09 !" +
+    private static final String ADDED_CONTACT = "Я очень рад, что ты решил с нами заниматься, я уверяю тебя ты не пожалеешь об этом \ud83d\ude09 !" +
             "Выбери один из пунктов, кот тебе больше всего нравится, нажав на одну из кнопок ниже.";
     private final ReplyKeyboard ADDED_CONTACT_BUTTONS = studentInlineKeyboardSource.getKeyboardAfterShareContact();
 
@@ -19,10 +19,8 @@ public class SharedContact implements Command{
 
     @Override
     public void execute(Update update) {
-//        String chatId = update.getCallbackQuery().getMessage().getChatId().toString();
-//
+//        String chatId = update.getCallbackQuery().getMessage().getChatId().toString();  //это если надо, чтобы предыдущее сообщение удалялось
 //        Integer message_id = update.getCallbackQuery().getMessage().getMessageId();
-//
 //        sendMessageService.deleteMessage(chatId, message_id);
 
         sendMessageService.sendMessage(update.getCallbackQuery().getMessage().getChatId().toString(), ADDED_CONTACT, ADDED_CONTACT_BUTTONS);
