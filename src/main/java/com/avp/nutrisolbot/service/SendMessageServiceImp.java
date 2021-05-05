@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -46,6 +47,19 @@ public class SendMessageServiceImp implements SendMessageService{
 
         try {
             nutrisolBot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteMessage(String chatId, Integer message_id) {
+        DeleteMessage deleteMessage =new DeleteMessage();
+        deleteMessage.setChatId(chatId);
+        deleteMessage.setMessageId(message_id);
+
+        try {
+            nutrisolBot.execute(deleteMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

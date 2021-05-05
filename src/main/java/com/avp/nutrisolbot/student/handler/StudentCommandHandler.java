@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import static com.avp.nutrisolbot.command.CommandName.*;
+import static com.avp.nutrisolbot.student.handler.CommandName.CONTACT;
 
 public class StudentCommandHandler {
 
@@ -18,6 +19,7 @@ public class StudentCommandHandler {
                 .put(STOP.getCommandName(), new StopCommand(sendMessageService))
                 .put(SETTINGS.getCommandName(), new SettingsCommand(sendMessageService))
                 .put(NOCOMMAND.getCommandName(), new NoCommand(sendMessageService))
+                .put(CONTACT.getCommandName(), new SharedContact(sendMessageService))
                 .build();
         unknownCommand = new UnknownCommand(sendMessageService);
     }
@@ -31,7 +33,18 @@ public class StudentCommandHandler {
             }else {
                 retrieveCommand(NOCOMMAND.getCommandName()).execute(update);
             }
+        } else if (update.hasCallbackQuery() && update.getCallbackQuery().getMessage().hasText()) {
+            String identifier = update.getCallbackQuery().getData();
+            retrieveCommand(identifier).execute(update);
         }
+//        if (update.hasMessage() && update.getMessage().hasText()) {
+//            String commandIdentifier = update.getMessage().getText();
+//            retrieveCommand(commandIdentifier).execute(update);
+//
+//        } else if (update.hasCallbackQuery() && update.getCallbackQuery().getMessage().hasText()) {
+//            String commandIdentifier = update.getCallbackQuery().getData().trim();
+//            retrieveCommand(commandIdentifier).execute(update);
+//        }
     }
 
     private Command retrieveCommand (String identifier) {
